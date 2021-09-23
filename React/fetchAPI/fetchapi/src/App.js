@@ -3,14 +3,22 @@ import './App.css';
 
 const getData = () => {
   return fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((resp) => {
-      return resp.text();
+    .then(resp => {
+      console.log(resp);
+      return resp.json();
     })
     .catch(err => console.error(err));
 }
 
+function BlogPost({post}) {
+  return post ? <div className="post" id={`post-${post.id}`}>
+    <h2>{post.title}</h2>
+    <p>{post.body}</p>
+  </div> : <div>No post</div>;
+}
+
 function App() {
-  const [postData, setPostData] = useState('');
+  const [postData, setPostData] = useState([]);
 
   useEffect(() => {
     return getData().then((posts => {
@@ -21,9 +29,7 @@ function App() {
   return (
     <div className="App">
       <h1>Fetchin' Data</h1>
-      <p>
-        {postData}
-      </p>
+      {postData.map(post=><BlogPost users={[]} post={post}/>)}
     </div>
   );
 }
