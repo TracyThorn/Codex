@@ -13,6 +13,9 @@ function App() {
       <button onClick={() => {
         return setCounter(counter + 1);
       }}>Increase</button>
+      <button onClick={() => {
+        return setCounter(counter - 1);
+      }}>Decrease</button>
     </div>
   );
 }
