@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './App.css';
 
 const getData = () => {
-  return axios('https://jsonplaceholder.typicode.com/posts')
-    .then(({data}) => {
-      console.log(data);
-      return JSON.stringify(data);
+  return fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((resp) => {
+      return resp.text();
     })
     .catch(err => console.error(err));
 }
